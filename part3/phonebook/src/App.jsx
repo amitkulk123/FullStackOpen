@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 import axios from "axios";
 
-/** do this is you really want to. Not necessary imo */
 const Filter = ({ filter, handleFilter }) => {
   return <div></div>;
 };
@@ -12,14 +14,6 @@ const PersonForm = () => {
 
 const Persons = () => {
   return <div></div>;
-};
-
-const Notification = ({ message }) => {
-  if (message === null) {
-    return null;
-  }
-
-  return <div className="error">{message}</div>;
 };
 
 const App = () => {
@@ -63,10 +57,10 @@ const App = () => {
   const handleNumber = (event) => setNewNumber(event.target.value);
 
   return (
-    <div>
+    <>
       <h2>Phonebook</h2>
       <div>
-        filter shown with: <input value={filter} onChange={handleFilter} />
+        Filter shown with: <input value={filter} onChange={handleFilter} />
       </div>
       <h2>Add a new</h2>
       <form onSubmit={addPerson}>
@@ -80,14 +74,13 @@ const App = () => {
           <button type="submit">add</button>
         </div>
       </form>
-      <Notification />
       <h2>Numbers</h2>
       {personsToShow.map((person) => (
         <p>
           {person.name} {person.number}
         </p>
       ))}
-    </div>
+    </>
   );
 };
 

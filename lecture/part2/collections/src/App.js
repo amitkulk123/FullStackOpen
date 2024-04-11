@@ -2,6 +2,7 @@ import "./App.css";
 import Note from "./components/Note.js";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./index.css";
 
 const App = () => {
   const [notes, setNotes] = useState([]);
