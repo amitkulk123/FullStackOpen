@@ -32,7 +32,7 @@ const App = () => {
       const api_key = import.meta.env.VITE_SOME_KEY;
       const capital = selectedCountry.capital[0];
       axios
-        .get(`https://api.openweathermap.org/data/2.5/weather?q=${capital}&appid=${api_key}&units=metric`)
+        .get(`https://api.openweathermap.org/data/2.5/weather?q=${capital}&appid=${api_key}&units=imperial`)
         .then((response) => setWeather(response.data))
         .catch((error) => console.error("Error fetching weather", error));
     }
@@ -61,19 +61,28 @@ const App = () => {
   return (
     <div>
       <h1>Country Finder</h1>
-      <input value={search} onChange={handleSearchChange} placeholder="Search countries" />
+      find countries: {" "} <input value={search} onChange={handleSearchChange} placeholder="Search countries" />
       {renderCountries()}
       {selectedCountry && (
         <div>
           <h2>{selectedCountry.name.common}</h2>
           <p>Capital: {selectedCountry.capital}</p>
           <p>Area: {selectedCountry.area} km²</p>
-          <p>Languages: {Object.values(selectedCountry.languages).join(', ')}</p>
+          <p>Languages: 
+            {/* {Object.values(selectedCountry.languages).join(', ')} */}
+            {/* create a bullet for each language */}
+            <ul>
+              {Object.values(selectedCountry.languages).map((language) => (
+                <li key={language}>{language}</li>
+              ))}
+            </ul>
+
+          </p>
           <img src={selectedCountry.flags.png} alt={`Flag of ${selectedCountry.name.common}`} width="100" />
           {weather && (
             <div>
               <h3>Weather in {selectedCountry.capital[0]}</h3>
-              <p>Temperature: {weather.main.temp} °C</p>
+              <p>Temperature: {weather.main.temp} °F</p>
               <p>Wind: {weather.wind.speed} m/s</p>
               <img
                 src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
