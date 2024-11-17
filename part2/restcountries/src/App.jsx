@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 
 const App = () => {
-  const [country, handleCountry] = useState([]);
+  const [country, handleCountry] = useState("");
 
   return (
     <>
